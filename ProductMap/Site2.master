@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site2.master.cs" Inherits="Site2" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<head id="Head1" runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<script language="javascript" type="text/javascript">
+    function postbackOnCheck() {
+        var o = window.event.srcElement;
+        if (o.tagName == 'INPUT' && o.type == 'checkbox' && o.name != null && o.name.indexOf('CheckBox') > -1)
+        { __doPostBack("", ""); }
+    }  
+</script>  
+
+
+<body>
+    <form id="Form1" runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>
+                    Product MAP</h1>
+            </div>
+            <div class="loginDisplay">
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                        <asp:MenuItem Text="View Scenarios" Value="Add Scenarios" 
+                            NavigateUrl="~/ViewScenarios.aspx"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/UploadExcel.aspx" Text="Upload Excel" 
+                            Value="Upload Excel"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/InsertScenarios.aspx" Text="Add Scenarios" 
+                            Value="Add Scenarios"></asp:MenuItem>
+                        <asp:MenuItem Text="Search Scenarios" Value="Search Scenarios" 
+                            NavigateUrl="~/AdvanceSearch.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Tree Master" Value="Tree Master">
+                            <asp:MenuItem NavigateUrl="~/CreateTree_Node.aspx" Text="Add Module" 
+                                Value="Add Module"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/AddSubModule.aspx" Text="Add Sub module" 
+                                Value="Add Sub module"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/AddArea.aspx" Text="Add Area" Value="Add Area">
+                            </asp:MenuItem>
+                            <asp:MenuItem Text="Add Sub Area" Value="Add Sub Area" 
+                                NavigateUrl="~/AddSubArea.aspx"></asp:MenuItem>
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="About"/>
+                        <asp:MenuItem Text="Reports" Value="Reports"></asp:MenuItem>
+                    </Items>
+                </asp:Menu>
+            </div>
+        </div>
+        <div  style="border-style: solid; border-width: thin; width: 30%; float:left;">
+            <asp:ContentPlaceHolder ID="CPH_left" runat="server">
+                <asp:TreeView ID="TreeView1" runat="server" ImageSet="WindowsHelp" onclick="postbackOnCheck()"
+                   
+                    >
+                    <HoverNodeStyle Font-Underline="True" ForeColor="#6666AA" />
+                    <NodeStyle Font-Names="Tahoma" Font-Size="11pt" ForeColor="Black" 
+                        HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="1px" />
+                    <ParentNodeStyle Font-Bold="False" />
+                    <SelectedNodeStyle BackColor="#B5B5B5" Font-Underline="False" 
+                        HorizontalPadding="0px" VerticalPadding="0px" />
+                </asp:TreeView>
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            </asp:ContentPlaceHolder>
+        </div>
+        <div style="width: 60%;float:left;">
+             <asp:ContentPlaceHolder ID="CPH_body" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>
+
