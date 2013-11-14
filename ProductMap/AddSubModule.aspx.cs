@@ -40,6 +40,13 @@ public partial class AddSubModule : System.Web.UI.Page
         ds = mobj.ShowsubModule();
         grdsubmodule.DataSource = ds;
         grdsubmodule.DataBind();
+
+        grdsubmodule.HeaderRow.Cells[1].Visible = false;
+        int countrow = ds.Tables[0].Rows.Count;
+        for (int i = 1; i <= countrow; i++)
+        {
+            grdsubmodule.Rows[i - 1].Cells[1].Visible = false;
+        }
  
     }
     protected void btnadd_Click(object sender, EventArgs e)

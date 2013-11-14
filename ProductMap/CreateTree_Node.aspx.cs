@@ -78,12 +78,9 @@ public partial class CreateTree_Node : System.Web.UI.Page
             SqlConnection conn = con.getconnection();
             conn.Open();
             int moduleid = Convert.ToInt32(row.Cells[1].Text);
-            
             SqlCommand cmd = new SqlCommand("Delete_Module_SP", conn);
             cmd.Parameters.Add("@moduleid", SqlDbType.Int).Value = moduleid;
             cmd.CommandType = CommandType.StoredProcedure;
-
-
             cmd.ExecuteNonQuery();
             conn.Close();
             LoadGrid();
