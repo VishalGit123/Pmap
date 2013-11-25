@@ -270,6 +270,21 @@ public class Connect
         conn.Close();
         return 1;
     }
+    public DataSet GetLoginDetail(string UserName, string password)
+    {
+        Connect con = new Connect();
+        SqlConnection conn = con.getconnection();
+        SqlCommand cmd = new SqlCommand("GetLoginDetail_SP", conn);
+        cmd.Parameters.Add("@Username", SqlDbType.NVarChar, 200).Value = UserName;
+        cmd.Parameters.Add("@password", SqlDbType.NVarChar, 200).Value = password;
+        cmd.CommandType = CommandType.StoredProcedure;
+        conn.Open();
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        conn.Close();
+        return ds;
+    }
 
 
 }
